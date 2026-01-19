@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import icon from '../assets/icon.svg';
+import imageJpg from '../assets/image.jpg';
+import imagePng from '../assets/image.png';
+import imageGif from '../assets/image.gif';
+import imageWebp from '../assets/image.webp';
+
+// In a real app, you would check for authentication here
+// Since this is a simple demo, we assume the user just redirected from the login page
+---
+
+<Layout title="Welcome">
+	<main class="max-w-4xl mx-auto p-8">
+		<div class="bg-white rounded-xl shadow-lg p-8 text-center">
+			<div class="flex justify-center mb-6">
+				<Image src={icon} alt="Star Icon" class="w-16 h-16" width={64} height={64} />
+			</div>
+			
+			<h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to the App!</h1>
+			<p class="text-lg text-gray-600 mb-8">You have successfully logged in with the test credentials.</p>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+				<div class="space-y-4">
+					<h2 class="text-xl font-semibold text-gray-800">JPEG Format</h2>
+					<div class="aspect-video bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+						<Image src={imageJpg} alt="JPEG Example" class="w-full h-full object-cover" width={600} height={400} />
+					</div>
+				</div>
+
+				<div class="space-y-4">
+					<h2 class="text-xl font-semibold text-gray-800">PNG Format</h2>
+					<div class="aspect-video bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+						<Image src={imagePng} alt="PNG Example" class="w-full h-full object-cover" width={600} height={400} />
+					</div>
+				</div>
+
+				<div class="space-y-4">
+					<h2 class="text-xl font-semibold text-gray-800">GIF Format</h2>
+					<div class="aspect-video bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+						<Image src={imageGif} alt="GIF Example" class="w-full h-full object-cover" width={600} height={400} />
+					</div>
+				</div>
+
+				<div class="space-y-4">
+					<h2 class="text-xl font-semibold text-gray-800">WebP Format</h2>
+					<div class="aspect-video bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+						<Image src={imageWebp} alt="WebP Example" class="w-full h-full object-cover" width={600} height={400} />
+					</div>
+				</div>
+			</div>
+
+			<div class="mt-12">
+				<a href="/" class="text-blue-600 hover:text-blue-800 font-medium">Logout</a>
+			</div>
+		</div>
+	</main>
+</Layout>

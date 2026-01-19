@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Login">
+	<main class="flex items-center justify-center min-h-screen">
+		<div class="bg-white p-8 rounded-lg shadow-md w-96">
+			<h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Login</h1>
+			<form id="loginForm" class="space-y-4">
+				<div>
+					<label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+					<input
+						type="text"
+						id="username"
+						name="username"
+						required
+						class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+					/>
+				</div>
+				<div>
+					<label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+					<input
+						type="password"
+						id="password"
+						name="password"
+						required
+						class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+					/>
+				</div>
+				<button
+					type="submit"
+					class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+				>
+					Sign In
+				</button>
+				<p id="errorMsg" class="text-red-500 text-sm mt-2 hidden text-center">Invalid username or password</p>
+			</form>
+		</div>
+	</main>
+</Layout>
+
+<script>
+	const loginForm = document.getElementById('loginForm') as HTMLFormElement;
+	const errorMsg = document.getElementById('errorMsg') as HTMLParagraphElement;
+
+	loginForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const formData = new FormData(loginForm);
+		const username = formData.get('username');
+		const password = formData.get('password');
+
+		if (username === 'test' && password === 'test') {
+			// In a real app, you'd set a session cookie here
+			// For this simple example, we just redirect
+			window.location.href = '/welcome/';
+		} else {
+			errorMsg.classList.remove('hidden');
+		}
+	});
+</script>
