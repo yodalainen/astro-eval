@@ -1,6 +1,13 @@
 import { defineMiddleware } from "astro:middleware";
 
 export const onRequest = defineMiddleware((context, next) => {
+  const url = new URL(context.request.url);
+  
+  // 0. Exclude the root path from Basic Auth
+  if (url.pathname === "/" || url.pathname === "") {
+    return next();
+  }
+
   // 1. Get the Authorization header from the request
   const authHeader = context.request.headers.get("Authorization");
 

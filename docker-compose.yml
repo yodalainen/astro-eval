@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    container_name: astro-web-app
+    ports:
+      - "8080:4321"
+    restart: unless-stopped

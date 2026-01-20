@@ -1,5 +1,78 @@
 ---
-// This page is now protected by the middleware.
-// Once you enter credentials, it will redirect you to the welcome page.
-return Astro.redirect('/welcome/');
+import Layout from '../layouts/Layout.astro';
 ---
+
+<Layout title="Login">
+	<main class="flex items-center justify-center min-h-screen">
+		<div class="bg-white p-8 rounded-lg shadow-md w-96">
+			<h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Login</h1>
+			
+			<div id="js-login-ui" class="hidden">
+				<p class="text-sm text-gray-600 mb-6 text-center">
+					Enter your credentials below to access the dashboard.
+				</p>
+				<form id="login-form" class="space-y-4">
+					<div>
+						<label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+						<input
+							type="text"
+							id="username"
+							name="username"
+							placeholder="test"
+							class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+						/>
+					</div>
+					<div>
+						<label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="test"
+							class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+						/>
+					</div>
+					<button
+						type="submit"
+						class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+					>
+						Sign In
+					</button>
+				</form>
+				<p class="text-xs text-gray-400 mt-4 text-center">
+					Note: Browsers typically handle authentication natively via a popup.
+				</p>
+			</div>
+
+			<noscript>
+				<div class="text-center">
+					<p class="text-sm text-gray-600 mb-6">
+						JavaScript is disabled. Please proceed directly to the protected welcome page.
+					</p>
+					<a
+						href="/welcome/"
+						class="inline-block w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-center"
+					>
+						Enter Protected Area
+					</a>
+				</div>
+			</noscript>
+		</div>
+	</main>
+</Layout>
+
+<script>
+	// Show the JS UI if JavaScript is enabled
+	const jsLoginUi = document.getElementById('js-login-ui');
+	if (jsLoginUi) {
+		jsLoginUi.classList.remove('hidden');
+	}
+
+	const loginForm = document.getElementById('login-form') as HTMLFormElement;
+	loginForm?.addEventListener('submit', (e) => {
+		e.preventDefault();
+		// In a Basic Auth setup, the actual authentication is handled by the browser
+		// when it hits a protected endpoint. We redirect to trigger that process.
+		window.location.href = '/welcome/';
+	});
+</script>
