@@ -7,7 +7,15 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Noto';
+  src: url('../assets/NotoSerif.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --font-roboto: "Roboto", sans-serif;
+  --font-serifNoto: "Noto", serif;
 }
